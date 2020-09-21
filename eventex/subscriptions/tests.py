@@ -38,7 +38,7 @@ class SubscribeTest(TestCase):
 class SubscribePostTest(TestCase):
     def setUp(self) -> None:
         data = dict(
-            name="Leonardo",
+            name="Leonardo Augusto",
             cpf=45009877899,
             email="sleonardoaugusto@gmail.com",
             phone="16-99130-6312",
@@ -64,5 +64,12 @@ class SubscribePostTest(TestCase):
 
     def test_subscription_email_to(self):
         email = mail.outbox[0]
-        expect = ["contato@eventex.com.br", "leonardo@gmail.com"]
+        expect = ["contato@eventex.com.br", "sleonardoaugusto@gmail.com"]
         self.assertEqual(email.to, expect)
+
+    def test_subscription_email_body(self):
+        email = mail.outbox[0]
+        self.assertIn("Leonardo Augusto", email.body)
+        self.assertIn("45009877899", email.body)
+        self.assertIn("sleonardoaugusto@gmail.com", email.body)
+        self.assertIn("16-99130-6312", email.body)
