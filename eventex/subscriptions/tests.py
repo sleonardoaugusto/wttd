@@ -73,3 +73,23 @@ class SubscribePostTest(TestCase):
         self.assertIn("45009877899", email.body)
         self.assertIn("sleonardoaugusto@gmail.com", email.body)
         self.assertIn("16-99130-6312", email.body)
+
+
+class SubscribeInvalidPost(TestCase):
+    def setUp(self) -> None:
+        self.resp = self.client.post("/inscricao", {})
+
+    def test_post(self):
+        """Invalid POST must not redirect"""
+        self.assertEqual(self.resp.status_code, 200)
+
+    def test_template(self):
+        self.assertTemplateUsed(self.resp, "subscriptions/subscription_form.html")
+
+    def test_has_form(self):
+        form = self.resp.context["form"]
+        self.assertIsInstance(form, SubscriptionForm)
+
+    def test_form_has_errors(self):
+        form = self.resp.context["form"]
+        self.assertTrue(form.errors)
