@@ -1,5 +1,8 @@
 # Eventex
 
+[![Build Status](https://travis-ci.org/sleonardoaugusto/wttd.svg?branch=master)](https://travis-ci.org/sleonardoaugusto/wttd)
+[![Coverage Status](https://coveralls.io/repos/github/sleonardoaugusto/wttd/badge.svg?branch=master)](https://coveralls.io/github/sleonardoaugusto/wttd?branch=master)
+
 Sistema de Eventos encomendado pela Morena.
 
 ## Como desenvolver?
@@ -17,7 +20,7 @@ cd wttd
 python -m venv .wttd
 source .wttd/bin/activate
 pip install -r requirements.txt
-cp contrib/.env-example .env
+cp contrib/env-sample .env
 python manage.py test
 ```
 
