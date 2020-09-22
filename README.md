@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/sleonardoaugusto/wttd.svg?branch=master)](https://travis-ci.org/sleonardoaugusto/wttd)
 [![Coverage Status](https://coveralls.io/repos/github/sleonardoaugusto/wttd/badge.svg?branch=master)](https://coveralls.io/github/sleonardoaugusto/wttd?branch=master)
 
-Sistema de Eventos encomendado pela Morena.
+Sistema de Eventos.
 
 ## Como desenvolver?
 
