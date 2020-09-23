@@ -15,7 +15,7 @@ class SubscriptionModel(TestCase):
         self.obj.save()
 
     def test_create(self):
-        self.assertTrue(Subscription.objects.all())
+        self.assertTrue(Subscription.objects.exists())
 
     def test_str(self):
         person_name = self.obj.name
