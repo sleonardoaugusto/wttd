@@ -1,6 +1,11 @@
+# App
 dj-database-url==0.5.0
 dj-static==0.0.6
-Django==3.1.1
 python-decouple==3.3
 coveralls==2.1.2
 Faker==4.1.3
+Django==3.1.1
+
+# Heroku
+psycopg2==2.8.6
+gunicorn==20.0.4
