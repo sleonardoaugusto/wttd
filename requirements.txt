@@ -3,3 +3,4 @@ dj-static==0.0.6
 Django==3.1.1
 python-decouple==3.3
 coveralls==2.1.2
+Faker==4.1.3
