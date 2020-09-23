@@ -11,6 +11,7 @@ class SubscriptionModelAdmin(admin.ModelAdmin):
         "phone",
         "created_at",
     )
+    date_hierarchy = "created_at"
 
 
 admin.site.register(Subscription, SubscriptionModelAdmin)
