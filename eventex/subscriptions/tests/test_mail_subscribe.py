@@ -10,7 +10,7 @@ class SubscribePostValid(TestCase):
             email="sleonardoaugusto@gmail.com",
             phone="16-99130-6312",
         )
-        self.response = self.client.post("/inscricao", data)
+        self.response = self.client.post("/inscricao/", data)
         self.email = mail.outbox[0]
 
     def test_subscription_email_subject(self):

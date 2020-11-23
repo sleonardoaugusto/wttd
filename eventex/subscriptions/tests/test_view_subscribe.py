@@ -6,7 +6,7 @@ from eventex.subscriptions.models import Subscription
 
 class SubscribeGet(TestCase):
     def setUp(self) -> None:
-        self.resp = self.client.get("/inscricao")
+        self.resp = self.client.get("/inscricao/")
 
     def test_get(self):
         """GET /inscricao must return status code 200"""
@@ -47,11 +47,11 @@ class SubscribePostValid(TestCase):
             email="sleonardoaugusto@gmail.com",
             phone="16-99130-6312",
         )
-        self.response = self.client.post("/inscricao", data)
+        self.response = self.client.post("/inscricao/", data)
 
     def test_post(self):
-        """Valid POST must redirect to /inscricao"""
-        self.assertEqual(302, self.response.status_code)
+        """Valid POST must redirect to /inscricao/<pk>"""
+        self.assertRedirects(self.response, "/inscricao/1/")
 
     def test_send_subscribe_email(self):
         self.assertEqual(len(mail.outbox), 1)
@@ -62,7 +62,7 @@ class SubscribePostValid(TestCase):
 
 class SubscribePostInvalid(TestCase):
     def setUp(self) -> None:
-        self.resp = self.client.post("/inscricao", {})
+        self.resp = self.client.post("/inscricao/", {})
 
     def test_post(self):
         """Invalid POST must not redirect"""
@@ -81,15 +81,3 @@ class SubscribePostInvalid(TestCase):
 
     def test_save_subscription(self):
         self.assertFalse(Subscription.objects.exists())
-
-
-class SubscribeSuccessMessage(TestCase):
-    def test_message(self):
-        data = dict(
-            name="Leonardo Augusto",
-            cpf=45009877899,
-            email="sleonardoaugusto@gmail.com",
-            phone="16-99130-6312",
-        )
-        response = self.client.post("/inscricao", data, follow=True)
-        self.assertContains(response, "Inscrição realizada com sucesso!")
