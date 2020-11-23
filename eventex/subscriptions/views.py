@@ -29,7 +29,7 @@ def create(request):
         "subscriptions/subscription_email.txt",
         {"subscription": subscription},
     )
-    return HttpResponseRedirect(f"/inscricao/{subscription.pk}/")
+    return HttpResponseRedirect(f"/inscricao/{subscription.uuid}/")
 
 
 def new(request):
@@ -38,9 +38,9 @@ def new(request):
     )
 
 
-def detail(request, pk):
+def detail(request, uuid):
     try:
-        subscription = Subscription.objects.get(pk=pk)
+        subscription = Subscription.objects.get(uuid=uuid)
     except Subscription.DoesNotExist:
         raise Http404
 
