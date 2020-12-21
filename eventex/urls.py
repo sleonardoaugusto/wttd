@@ -14,13 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 import eventex.core.views
-from eventex.subscriptions.views import subscribe, detail
 
 urlpatterns = [
     path("", eventex.core.views.home, name="home"),
-    path("inscricao/", subscribe),
-    path("inscricao/<str:uuid>/", detail),
+    path("inscricao/", include("eventex.subscriptions.urls")),
     path("admin/", admin.site.urls),
 ]
