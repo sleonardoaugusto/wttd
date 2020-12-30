@@ -26,6 +26,28 @@ class SubscriptionFormTest(TestCase):
         form = self.make_validated_form(name="leonardo AUGUSTO")
         self.assertEqual(form.cleaned_data["name"], "Leonardo Augusto")
 
+    def test_email_optional(self):
+        """Email field should be optional"""
+        form = self.make_validated_form(email="")
+        self.assertFalse(form.errors)
+
+    def test_phone_optional(self):
+        """Phone field should be optional"""
+        form = self.make_validated_form(phone="")
+        self.assertFalse(form.errors)
+
+    def test_must_inform_email_or_phone(self):
+        """Email and Phone are optional, but one must be informed"""
+        form = self.make_validated_form(email="", phone="")
+        self.assertListEqual(["__all__"], list(form.errors))
+
+    def test_invalid_email_and_phone_not_informed(self):
+        """Must show errors if email is invalid and phone is not informed"""
+        form = self.make_validated_form(
+            name=fake.name(), cpf=fake.document_id(), email="asdf", phone=""
+        )
+        self.assertListEqual(["email", "__all__"], list(form.errors))
+
     @staticmethod
     def make_validated_form(**kwargs):
         valid = dict(
