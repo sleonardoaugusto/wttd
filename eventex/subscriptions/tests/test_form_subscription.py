@@ -21,6 +21,11 @@ class SubscriptionFormTest(TestCase):
         form = self.make_validated_form(cpf="999999999")
         self.assertFormErrorCode(form, "cpf", "length")
 
+    def test_capitalize(self):
+        """Name must be capitalized"""
+        form = self.make_validated_form(name="leonardo AUGUSTO")
+        self.assertEqual(form.cleaned_data["name"], "Leonardo Augusto")
+
     @staticmethod
     def make_validated_form(**kwargs):
         valid = dict(
