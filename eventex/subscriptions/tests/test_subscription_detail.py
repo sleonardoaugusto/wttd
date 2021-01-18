@@ -1,8 +1,9 @@
 import uuid
+
+from django.shortcuts import resolve_url as r
 from django.test import TestCase
 
 from eventex.subscriptions.models import Subscription
-from django.shortcuts import resolve_url as r
 
 
 class SubscriptionDetalGet(TestCase):
@@ -32,8 +33,8 @@ class SubscriptionDetalGet(TestCase):
             self.obj.email,
             self.obj.phone,
         )
-        with self.subTest():
-            for expected in contents:
+        for expected in contents:
+            with self.subTest():
                 self.assertContains(self.resp, expected)
 
 
