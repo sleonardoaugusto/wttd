@@ -1,6 +1,6 @@
 from django.core import mail
-from django.test import TestCase
 from django.shortcuts import resolve_url as r
+from django.test import TestCase
 
 
 class SubscribePostValid(TestCase):
@@ -18,7 +18,7 @@ class SubscribePostValid(TestCase):
         expect = "Confirmação de Inscrição"
         self.assertEqual(self.email.subject, expect)
 
-    def test_subscription_email_form(self):
+    def test_subscription_email_from(self):
         expect = "contato@eventex.com.br"
         self.assertEqual(self.email.from_email, expect)
 
